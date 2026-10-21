@@ -1,43 +1,180 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Timur Pixel</title>
-<meta name="description" content="Timur Pixel — small apps made in Indonesia by Redi Sunarta.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Timur Pixel — Aplikasi kecil buatan Indonesia</title>
+<meta name="description" content="Timur Pixel membuat aplikasi kecil untuk hidup sehari-hari: Melek Woy!, Piring Pas, dan Malming. Dibuat di Jakarta.">
+<link rel="canonical" href="https://timurpixel.com/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111111'/%3E%3Cpath d='M16 15h32v9H36.5v25h-9V24H16z' fill='%23ffffff'/%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Timur Pixel">
+<meta property="og:url" content="https://timurpixel.com/">
+<meta property="og:title" content="Timur Pixel — Aplikasi kecil buatan Indonesia">
+<meta property="og:description" content="Aplikasi kecil, buat hidup sehari-hari. Melek Woy!, Piring Pas, dan Malming — dibuat di Jakarta.">
+<meta property="og:image" content="https://timurpixel.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Aplikasi kecil, buat hidup sehari-hari — ikon Melek Woy!, Piring Pas, dan Malming">
+<meta property="og:locale" content="id_ID">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --night: #231D3A; --raised: #2F2750; --line: #4A3F75;
-    --text: #F3EEFF; --muted: #B9AEE0; --peach: #FFD9B8;
+    --bg: #FFFFFF; --text: #111111; --muted: #6B6B76; --faint: #9A9AA5;
+    --line: #ECECEF; --line-hover: #CFCFD6; --chip: #F3F3F5;
   }
   * { box-sizing: border-box; }
+  html { background: var(--bg); }
   body {
-    margin: 0; background: var(--night); color: var(--text);
-    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0; min-height: 100vh; min-height: 100svh;
+    display: flex; flex-direction: column;
+    padding: clamp(16px, 3.5vh, 36px) clamp(20px, 4vw, 56px);
+    background: var(--bg); color: var(--text);
+    font: 16px/1.5 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
-  main { max-width: 720px; margin: 0 auto; padding: 48px 20px 64px; }
-  h1 { font-size: 32px; line-height: 1.2; margin: 0 0 4px; }
-  .muted { color: var(--muted); font-size: 15px; }
-  a { color: var(--peach); }
-  .app { display: block; background: var(--raised); border: 1.5px solid var(--line); border-radius: 18px; padding: 16px 20px; margin: 28px 0 10px; text-decoration: none; color: var(--text); }
-  .app strong { font-size: 20px; }
-  .app span { display: block; color: var(--muted); font-size: 15px; }
-  .links { font-size: 15px; }
-  footer { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 12px; }
+  a { color: inherit; }
+  a:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; border-radius: 6px; }
+  h1, h2, p { margin: 0; }
+
+  /* Top bar */
+  .top { display: flex; justify-content: space-between; align-items: center; }
+  .wordmark { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; }
+  .top-email { font-size: 14px; color: var(--muted); text-decoration: none; }
+  .top-email:hover { color: var(--text); }
+
+  /* Centre block */
+  main {
+    flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    gap: clamp(24px, 5.5vh, 56px); padding: clamp(16px, 3vh, 32px) 0;
+  }
+  .intro { text-align: center; }
+  h1 { font-size: clamp(32px, min(3.2vw, 5.6vh), 44px); line-height: 1.1; text-wrap: balance; font-weight: 700; letter-spacing: -0.035em; }
+  .sub { margin-top: clamp(8px, 1.4vh, 14px); font-size: 17px; color: var(--muted); }
+
+  /* App cards */
+  .apps { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 1.8vw, 24px); width: min(1080px, 100%); }
+  .card {
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    padding: clamp(20px, 4.2vh, 40px) clamp(20px, 2vw, 28px);
+    border: 1px solid var(--line); border-radius: 28px;
+    text-decoration: none; color: inherit;
+    transition: border-color .2s ease;
+  }
+  a.card:focus-visible { border-radius: 28px; outline-offset: 4px; }
+  .card-text, .card-head { display: contents; }
+  .icon {
+    width: clamp(88px, 14.7vh, 132px); height: clamp(88px, 14.7vh, 132px);
+    border-radius: 22.5%; display: block; flex: none;
+    box-shadow: 0 0 0 1px rgba(17, 17, 17, .04);
+    transition: transform .2s ease;
+  }
+  .name { order: 1; margin-top: clamp(14px, 2.6vh, 24px); font-size: clamp(22px, 3.2vh, 26px); line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; }
+  .desc {
+    order: 2; margin-top: 6px; font-size: 16px; line-height: 1.45; color: var(--muted); max-width: 30ch; text-wrap: balance;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .chip {
+    order: 3; margin-top: auto; padding: 7px 16px; border-radius: 999px;
+    font-size: 14px; font-weight: 600; line-height: 1.4; white-space: nowrap;
+  }
+  .desc + .chip, .card-head .chip { margin-top: clamp(14px, 2.4vh, 22px); }
+  .chip-live { background: var(--text); color: #FFFFFF; }
+  .chip-soon { background: var(--chip); color: var(--muted); }
+  @media (hover: hover) {
+    a.card:hover { border-color: var(--line-hover); }
+    a.card:hover .icon { transform: translateY(-2px); }
+  }
+
+  /* Footer */
+  footer { text-align: center; font-size: 13px; color: var(--muted); }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--text); text-decoration: underline; }
+  .dot { color: var(--faint); margin: 0 6px; }
+  .footer-email { display: none; }
+
+  /* Phone */
+  @media (max-width: 899px) {
+    body { padding: 20px 20px max(20px, env(safe-area-inset-bottom)); }
+    .top-email { display: none; }
+    main { align-items: stretch; justify-content: center; gap: clamp(20px, 4vh, 36px); padding: 16px 0; }
+    .intro { text-align: left; }
+    h1 { font-size: clamp(26px, 7.7vw, 30px); letter-spacing: -0.03em; }
+    .sub { font-size: 15px; margin-top: 8px; }
+    .apps { grid-template-columns: 1fr; gap: 0; }
+    .card {
+      flex-direction: row; align-items: center; text-align: left; gap: 16px;
+      padding: clamp(12px, 2.2vh, 18px) 0; border: 0; border-radius: 0;
+    }
+    .card + .card { border-top: 1px solid var(--line); }
+    a.card:focus-visible { border-radius: 12px; }
+    .icon { width: 72px; height: 72px; }
+    .card-text { display: block; min-width: 0; flex: 1; }
+    .card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .name { margin: 0; font-size: 18px; }
+    .chip, .card-head .chip { margin: 0; padding: 4px 10px; font-size: 12px; }
+    .desc { margin-top: 3px; font-size: 14.5px; max-width: none; }
+    footer { font-size: 12.5px; line-height: 1.7; }
+    .footer-email { display: block; }
+  }
 </style>
 </head>
 <body>
+
+<header class="top">
+  <a class="wordmark" href="/">Timur Pixel</a>
+  <a class="top-email" href="mailto:redi.sunarta@gmail.com">redi.sunarta@gmail.com</a>
+</header>
+
 <main>
-  <h1>Timur Pixel</h1>
-  <p class="muted">Small apps made in Indonesia by Redi Sunarta.</p>
+  <div class="intro">
+    <h1>Aplikasi kecil, buat hidup sehari-hari.</h1>
+    <p class="sub">Dibuat di Jakarta oleh Timur Pixel.</p>
+  </div>
 
-  <a class="app" href="melekwoy/">
-    <strong>Melek Woy!</strong>
-    <span>Alarm yang cuma mati kalau kamu bangun. · The alarm that only stops once you're up.</span>
-  </a>
-  <p class="links"><a href="melekwoy/">Support</a> · <a href="melekwoy/privacy.html">Privacy policy</a></p>
+  <section class="apps" aria-label="Aplikasi">
+    <!-- ===== APPS — one block per app. To add an app, copy a block.
+         Live app:   <a class="card" href="APP STORE URL"> … <span class="chip chip-live">App Store</span> … </a>
+         Coming soon: <div class="card"> … <span class="chip chip-soon">Segera hadir</span> … </div>
+         Icons: assets/apps/*.svg (square; corners are rounded by CSS). ===== -->
 
-  <footer class="muted">Contact: <a href="mailto:redi.sunarta@gmail.com">redi.sunarta@gmail.com</a></footer>
+    <a class="card" href="[APP STORE LINK]" aria-label="Melek Woy! di App Store">
+      <picture><source srcset="assets/apps/melekwoy.svg" type="image/svg+xml"><img class="icon" src="assets/apps/melekwoy.png" alt="Ikon Melek Woy!" width="132" height="132"></picture>
+      <div class="card-text">
+        <div class="card-head"><h2 class="name">Melek Woy!</h2><span class="chip chip-live">App Store</span></div>
+        <p class="desc">Alarm yang baru berhenti setelah kamu foto wastafel.</p>
+      </div>
+    </a>
+
+    <div class="card">
+      <img class="icon" src="assets/apps/D1.svg" alt="Ikon Piring Pas" width="132" height="132">
+      <div class="card-text">
+        <div class="card-head"><h2 class="name">Piring Pas</h2><span class="chip chip-soon">Segera hadir</span></div>
+        <p class="desc">Foto piringmu, lihat porsinya pas atau belum.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="icon" src="assets/apps/T3.svg" alt="Ikon Malming" width="132" height="132">
+      <div class="card-text">
+        <div class="card-head"><h2 class="name">Malming</h2><span class="chip chip-soon">Segera hadir</span></div>
+        <p class="desc">Ide kencan malam minggu dalam 2 menit.</p>
+      </div>
+    </div>
+
+    <!-- ===== /APPS ===== -->
+  </section>
 </main>
+
+<footer>
+  <a class="footer-email" href="mailto:redi.sunarta@gmail.com">redi.sunarta@gmail.com</a>
+  <span>© 2026 Timur Pixel</span><span class="dot" aria-hidden="true">·</span><a href="melekwoy/">Melek Woy! Support</a><span class="dot" aria-hidden="true">·</span><a href="melekwoy/privacy.html">Privacy</a>
+</footer>
+
 </body>
 </html>
